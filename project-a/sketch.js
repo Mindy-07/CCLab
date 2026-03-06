@@ -86,14 +86,9 @@ function draw() {
       let noiseSeedY = random(1000);
 
       let offsetX = map(noise(noiseSeedX, frameCount * 0.01), 0, 1, -100, 100);
-      let offsetY = map(
-        noise(noiseSeedY, frameCount * 0.01 + 50),
-        0,
-        1,
-        -100,
-        100
-      );
-
+      let offsetY = map(noise(noiseSeedY, frameCount * 0.01 + 50), 0, 1, -100, 100);
+      
+      
       let posX = x + offsetX;
       let posY = y + offsetY;
 
@@ -124,10 +119,10 @@ function draw() {
 }
 
 function drawCreature(x, y, size, rota, flapSpeed, wisp) {
-  let backColor; //= color(30, 40, 40);
-  let middleColor; //= color(40, 30, 60);
-  let headColor; //= color(20, 50, 20);
-  let eyeColor; //= color(0, 0, 0);
+  let backColor;
+  let middleColor; 
+  let headColor; 
+  let eyeColor;
 
   if (wisp) {
     //Full moon situation
@@ -202,7 +197,7 @@ function drawWings(flapSpeed) {
 
 function drawMoon(full, phase) {
   push();
-  translate(width - 80, 80);
+  translate(width - 120, 80);
   noStroke();
 
   let moonColor;
@@ -214,15 +209,15 @@ function drawMoon(full, phase) {
   //Moon cover for phases
   for (let r = 50; r > 0; r -= 5) {
     fill(moonColor, 20, 100, 2);
-    circle(0, 0, r * 2.5);
+    circle(0, 0, r * 4.5);
   }
   fill(moonColor, 10, 100);
-  circle(0, 0, 60);
+  circle(0, 0, 140);
 
   if (full === false) {
     fill(30, 40, 5);
     let mShadowX = map(phase, 0, 0.7, 10, 50);
-    circle(mShadowX, -5, 60);
+    circle(mShadowX, -50, 140);
   }
   pop();
 }
