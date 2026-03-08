@@ -27,12 +27,12 @@ function draw() {
   if (mouseIsPressed) {
     if (attraction < 1) {
       //speed they flock
-      attraction += 0.02;
+      attraction += 0.01;
     }
   } else {
     if (attraction > 0) {
       // How fast they wander away
-      attraction -= 0.02;
+      attraction -= 0.01;
     }
   }
 
