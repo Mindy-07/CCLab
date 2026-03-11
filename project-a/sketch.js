@@ -22,6 +22,7 @@ function draw() {
 
   drawMoon(isFullMoon, moonPhase);
   drawForest(isFullMoon);
+  drawParticles(isFullMoon);
 
   //attraction to light
   if (mouseIsPressed) {
@@ -308,5 +309,42 @@ function drawForest(wisp) {
     fill(leafColor, leafSat, leafBri, 80);
     ellipse(leafx, leafy, random(80, 150), random(50, 100));
   }
+  pop();
+}
+
+function drawParticles(wisp) {
+  push();
+  randomSeed(forestSeed + 999);
+  noStroke();
+
+  for (let i = 0; i < 60; i++) {
+
+    //positions stay stable
+    let baseX = random(width);
+    let baseY = random(height);
+
+    //particles drifting
+    let drift = frameCount * random(0.1, 0.4);
+    let x = baseX + sin(drift + i * 20) * 15;
+    let y = baseY + cos(drift + i * 15) * 10;
+
+    if (wisp === true) { //when theres a full moon
+      let partSize = random(6, 14);
+
+      for (let g = 3; g > 0; g--) {
+        fill(190, 40, 100, 8 * g);
+        circle(x, y, random(2, 5));
+      }
+
+      fill(190, 20, 100, 70);
+      circle(x, y, partSize * 0.4);
+
+    } else { //reg moon phases
+      fill(60, 30, 90, 15);
+      circle(x, y, random(2, 5));
+
+    }
+  }
+
   pop();
 }
