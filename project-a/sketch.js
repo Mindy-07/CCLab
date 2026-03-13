@@ -6,8 +6,7 @@ let nextResetSeed = 0;
 let attraction = 0;
 
 function setup() {
-  let canvas = createCanvas(800, 500);
-  canvas.parent("p5-canvas-container")
+  createCanvas(800, 500);
   angleMode(DEGREES);
   colorMode(HSB, 360, 100, 100, 100);
   reset();
