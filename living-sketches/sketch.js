@@ -53,13 +53,13 @@ function setup() {
   sleep = crop(scanned, 0, 1800, 1200, 800);
   clocks = crop(scanned, 2800, 1800, 2800, 2000);
   sleepBack = crop(sleepBack, 0, 1800, 1200, 800);
+
   sleepW = sleep[0].width * 0.25;
   sleepH = sleep[0].height * 0.25;
 
   clockW = clocks[0].width * 0.25;
   clockH = clocks[0].height * 0.25;
 
-  console.log(sleep[0])
 }
 
 function draw() {
@@ -98,7 +98,6 @@ function draw() {
   }
 
   let currentFrames;
-
   // choosing frames
   if (isReturning) {
     currentFrames = sleepBack;
