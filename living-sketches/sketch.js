@@ -19,11 +19,12 @@ let clockY = 330;
 
 //scooting speed
 let moveSpeed = 1.1;
+let startX = 20;
 
 //returning
 let sleepBack;
 let isReturning = false;
-let startX = 20;
+
 
 
 // display sizes
