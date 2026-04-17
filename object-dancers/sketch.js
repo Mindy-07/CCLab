@@ -84,7 +84,7 @@ class MindyDancer {
 
     translate(this.x + slideX, this.y + this.bounce);
    
-    //main slime
+    //big slime
     //push();
     scale(this.stretchX, this.stretchY);
     this.drawSlime(0, 0, 1);
@@ -157,8 +157,6 @@ class MindyDancer {
   // }
   }
 }
-
-
 
 /*
 GOAL:
