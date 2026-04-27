@@ -47,12 +47,12 @@ let showDeskInfo = false;
 
 let stickyX = 250;
 let stickyY = 250;
-let stickyW = 310;
-let stickyH = 260;
+let stickyW = 330;
+let stickyH = 300;
 
-let stickyCloseX = 365;
-let stickyCloseY = 15;
-let stickyCloseSize = 55;
+let stickyCloseX = 405;
+let stickyCloseY = 105;
+let stickyCloseSize = 45;
 
 let starJarImg;
 let topStarJarImg;
