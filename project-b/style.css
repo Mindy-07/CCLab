@@ -6,3 +6,8 @@ html, body {
 canvas {
   display: block;
 }
+
+.deskimage {
+  height: 100px;
+  width: 100px;
+}
