@@ -267,9 +267,7 @@ function draw() {
     image(drawerImg, 0, 0, width, height);
     image(backImgs[0], backX - 30, backY - 20, backSize, backSize);
     drawProgressBar();
-
   }
-  
   else if (currentPage === "album") {
     imageMode(CORNER);
     image(albumImg, 0, 0, width, height);
@@ -306,7 +304,6 @@ function draw() {
     textSize(16);
     text("You chose Yes! Which means you are comfortable with going out. \n You were able to reacharge your energy by doing small activities in your room. \n Just remember you don't always have to say yes, sometimes \n you need that alone time and that's ok! \n Burnout and being socially drained is and will forever be a part of us", 250, 250, 250, 400);
   }
-  
   else if (currentPage === "noPage") {
     imageMode(CORNER);
     image(noImg, 0, 0, width, height);
@@ -462,8 +459,8 @@ function clickArea(mx, my, x, y, w, h) {
           stopSong();
           musicOn = false;
         } else {
-            playSong();
             musicOn = true;
+            playSong();
         }
     }
   }

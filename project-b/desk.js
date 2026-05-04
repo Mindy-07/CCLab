@@ -21,11 +21,8 @@ function drawDeskInfoNote() {
     currentSong = floor(random(songs.length));
     songs[currentSong].play();
   
-    songs[currentSong].onended(function () {
-      if (musicOn) {
-        continueSong();
-      }
-    });
+    songs[currentSong].onended(songEnded); {
+    }
   }
   //if the speaker isn't clicked again then it'll play the next song
   function continueSong() {
@@ -34,14 +31,15 @@ function drawDeskInfoNote() {
     if (currentSong >= songs.length) {
       currentSong = 0;
     }
-  
     songs[currentSong].play();
     //onended
-    songs[currentSong].onended(function () {
-      if (musicOn) {
-        continueSong();
-      }
-    });
+    songs[currentSong].onended(songEnded); {
+    }
+  }
+  function songEnded() {
+    if (musicOn) {
+      continueSong();
+    }
   }
   
   function stopSong() {

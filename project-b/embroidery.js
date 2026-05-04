@@ -75,7 +75,7 @@ class SewingActivity {
         return;
       
       }
-      // check palette first
+      //checks the palette first
       for (let i = 0; i < this.palette.length; i++) {
         if (this.palette[i].contains(mx, my)) {
           this.currentThreadColor = this.palette[i].threadColor;
@@ -84,7 +84,7 @@ class SewingActivity {
         }
       }
   
-      // start sewing
+      //start sewing
       if (this.hoop.contains(mx, my)) {
         this.startX = mx;
         this.startY = my;
@@ -190,7 +190,6 @@ class SewingActivity {
         imageMode(CENTER);
         image(resetImgs[0], this.x, this.y, this.w, this.h);
       }
-    
   
       contains(mx, my) {
         return clickArea(mx, my, this.x, this.y, this.w, this.h);
