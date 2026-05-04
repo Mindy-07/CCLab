@@ -57,11 +57,6 @@ let infoSize = 45;
 
 let showDeskInfo = false;
 
-//where the close hitbox is
-let stickyCloseX = 385;
-let stickyCloseY = 160;
-let stickyCloseSize = 45;
-
 //Jar of stars in star activity
 let starJarImg;
 let topStarJarImg;
@@ -95,8 +90,6 @@ let albumTexts = ["New York City 6/25/25", "Hong Kong 4/5/26", "Photo Strip 4/18
   "Graduating! Class of 26'"
 ];
 
-let drawerOpen = false;
-let albumOpen = false;
 let currentPhoto = 0;
 
 //the progress level
@@ -110,8 +103,6 @@ let albumGoal = false;
 //phone
 let phoneImgs = [];
 let phoneIndex = 0;
-let openMessage = false;
-
 //recentProgress
 let recentProgress = 0;
 let unreadMessage = false;
@@ -186,7 +177,6 @@ flipSound = loadSound("assets/sounds/flip.mp3");
 function setup() {
   let canvas = createCanvas(500, 500);
   canvas.parent("p5-canvas-container");
-  //createCanvas(500, 500);
   //Erasing my bg
   eraseBg(hoopImgs, 25);
   eraseBg(redThreadImgs, 25);
@@ -427,7 +417,9 @@ function clickArea(mx, my, x, y, w, h) {
   function checkThreadOnDesk(mx, my) {
     if (clickArea(mx, my, threadOnDeskX, threadOnDeskY, threadOnDeskSize, threadOnDeskSize)) {
       currentPage = "sewing";
+      return true;
     }
+    return false;
   }
 
   function checkStart(mx, my) {
@@ -448,7 +440,9 @@ function clickArea(mx, my, x, y, w, h) {
       starStep = 0;
       starX = 270;
       starY = 290;
+      return true;
     }
+    return false;
   }
   
   //for later, adds music
@@ -462,7 +456,9 @@ function clickArea(mx, my, x, y, w, h) {
             musicOn = true;
             playSong();
         }
-    }
+        return true;
+      }
+      return false;
   }
   function checkDrawerClick(mx, my) {
     if (clickArea(mx, my, 365, 460, 200, 50)) {
