@@ -4,15 +4,15 @@ function drawStarActivity() {
     imageMode(CENTER);
     image(topStarJarImg, jarX, jarY, jarSize, jarSize);
   
+    //current folding step
+    image(paperStarImgs[starStep], starX, starY, starSize, starSize);
     // counter
     fill(70);
     noStroke();
+    textFont(pixelFont);
     textAlign(CENTER);
     textSize(16);
-    text("Stars: " + starCount, jarX, jarY + 70);
-  
-    //current folding step
-    image(paperStarImgs[starStep], starX, starY, starSize, starSize);
+    text("Stars: " + starCount + "/5", jarX, jarY + 70);
   
     //instruction
     textSize(13);
@@ -24,14 +24,11 @@ function drawStarActivity() {
   }
 
   function handleStarMousePressed(mx, my) {
-    let clickedStar =
-      mx > starX - starSize / 2 &&
-      mx < starX + starSize / 2 &&
-      my > starY - starSize / 2 &&
-      my < starY + starSize / 2;
-  
-    if (clickedStar) {
+    if (clickArea(mx, my, starX, starY, starSize, starSize)) {
       if (starStep < 7) {
+        paperSound.stop();
+        //play(startTime, rate, amp, cueStart, duration)
+        paperSound.play(0, 1, 1, 0, 0.3);
         starStep++;
       } else {
         draggingStar = true;
@@ -52,7 +49,7 @@ function drawStarActivity() {
   
       if (d < jarSize / 2) {
         starCount++;
-  
+
         // reset to new paper strip
         starStep = 0;
         starX = 270;

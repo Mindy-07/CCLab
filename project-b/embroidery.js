@@ -19,9 +19,9 @@ class SewingActivity {
   
       this.palette = [
         new PalThread(50, 120, redThreadImgs[0], selectedRedThreadImgs[0], color("red"), "red"),
-        new PalThread(50, 200, blueThreadImgs[0], selectedBlueThreadImgs[0], color("blue"), "blue"),
-        new PalThread(50, 280, greenThreadImgs[0], selectedGreenThreadImgs[0], color("green"), "green"),
-        new PalThread(50, 360, yellowThreadImgs[0], selectedYellowThreadImgs[0], color("yellow"), "yellow"),
+        new PalThread(48, 200, blueThreadImgs[0], selectedBlueThreadImgs[0], color("blue"), "blue"),
+        new PalThread(46, 280, greenThreadImgs[0], selectedGreenThreadImgs[0], color("green"), "green"),
+        new PalThread(44, 360, yellowThreadImgs[0], selectedYellowThreadImgs[0], color("yellow"), "yellow"),
       ];
   
       this.currentThreadColor = this.palette[0].threadColor;
@@ -29,7 +29,6 @@ class SewingActivity {
       this.resetButton = new ResetButton(85, 440, 90, 120, "Reset");
     }
     display() {
-        //this.drawFabricArea();
         this.hoop.display();
       
         for (let i = 0; i < this.stitches.length; i++) {
@@ -50,12 +49,6 @@ class SewingActivity {
         this.displayInfo();
       }
   
-    drawFabricArea() {
-      noStroke();
-      fill(250, 247, 243);
-      circle(this.hoop.x, this.hoop.y, this.hoop.radius * 2 - 18);
-    }
-  
     displayPalette() {
   
       for (let i = 0; i < this.palette.length; i++) {
@@ -69,9 +62,10 @@ class SewingActivity {
     displayInfo() {
       fill(70);
       noStroke();
+      textFont(pixelFont);
       textAlign(CENTER);
       textSize(13);
-      text("Stitches: " + this.stitches.length, width / 2, height - 20);
+      text("Stitches: " + this.stitches.length +"/15", width / 2, height - 20);
     }
   
   
@@ -114,7 +108,6 @@ class SewingActivity {
       this.isDragging = false;
     }
   }
-  
 
   class EmbroideryHoop {
     constructor(x, y, radius) {
@@ -129,10 +122,16 @@ class SewingActivity {
     display() {
       imageMode(CENTER);
       image(hoopImgs[0], this.x, this.y, this.displayW, this.displayH);
+
+      // //TEMP HitBox checker
+      // noFill();
+      // stroke("red");
+      // strokeWeight(2);
+      // circle(this.x+12, this.y+22, (this.radius - 24) * 2);
     }
   
     contains(px, py) {
-      return dist(px, py, this.x, this.y) < this.radius - 15;
+      return dist(px, py, this.x+12, this.y+22) < this.radius - 24;
     }
   }
   
@@ -143,46 +142,15 @@ class SewingActivity {
       this.x2 = x2;
       this.y2 = y2;
       this.threadColor = threadColor;
-      this.stitchNumber = stitchNumber;
     }
   
     display() {
       stroke(this.threadColor);
       strokeWeight(3);
       line(this.x1, this.y1, this.x2, this.y2);
-  
-      let midX = (this.x1 + this.x2) / 2;
-      let midY = (this.y1 + this.y2) / 2;
     }
   }
   
-  class PalColor {
-    constructor(x, y, threadColor, name) {
-      this.x = x;
-      this.y = y;
-      this.size = 60; // orig 40
-      this.threadColor = threadColor;
-      this.name = name;
-    }
-  
-    display(isSelected) {
-      if (isSelected) {
-        stroke(255, 140, 120);
-        strokeWeight(4);
-      } else {
-        stroke(120);
-        strokeWeight(1.5);
-      }
-  
-      fill(this.threadColor);
-      circle(this.x, this.y, this.size);
-    }
-  
-    contains(mx, my) {
-      return dist(mx, my, this.x, this.y) < this.size / 2;
-    }
-  }
-
   class PalThread {
     constructor(x, y, normalImg, selectedImg, threadColor, name) {
       this.x = x;
@@ -204,16 +172,10 @@ class SewingActivity {
         }
       }
   
-    contains(mx, my) {
-      return (
-        mx > this.x - this.size / 2 &&
-        mx < this.x + this.size / 2 &&
-        my > this.y - this.size / 2 &&
-        my < this.y + this.size / 2
-      );
+      contains(mx, my) {
+        return clickArea(mx, my, this.x, this.y, this.size, this.size);
     }
   }
-
 
   class ResetButton {
     constructor(x, y, w, h, label) {
@@ -230,12 +192,7 @@ class SewingActivity {
       }
     
   
-    contains(mx, my) {
-      return (
-        mx > this.x - this.w / 2 &&
-        mx < this.x + this.w / 2 &&
-        my > this.y - this.h / 2 &&
-        my < this.y + this.h / 2
-      );
-    }
+      contains(mx, my) {
+        return clickArea(mx, my, this.x, this.y, this.w, this.h);
+      }
   }

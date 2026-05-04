@@ -1,4 +1,4 @@
-html, body {
+/* html, body {
   margin: 0;
   padding: 0;
 }
@@ -10,4 +10,56 @@ canvas {
 .deskimage {
   height: 100px;
   width: 100px;
+} */
+@font-face {
+  font-family: "Retropix";
+  src: url("Retropix.ttf") format("truetype");
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #ffdce8;
+  min-height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#title {
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+
+  font-family: "Retropix", monospace;
+  font-size: 48px;
+  line-height: 1.4;
+  color: #5a3a4a;
+}
+
+#main {
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#p5-canvas-container {
+  width: 500px;
+  height: 500px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+canvas {
+  display: block;
+  width: 500px;
+  height: 500px;
 }
