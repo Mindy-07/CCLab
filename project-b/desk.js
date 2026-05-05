@@ -22,6 +22,7 @@ function drawDeskInfoNote() {
     songs[currentSong].play();
   
     songs[currentSong].onended(songEnded); {
+
     }
   }
   //if the speaker isn't clicked again then it'll play the next song

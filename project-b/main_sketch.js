@@ -96,9 +96,9 @@ let currentPhoto = 0;
 let progressImgs = [];
 let progressLevel = 0;
 
-let sewingGoal = false;
-let starsGoal = false;
-let albumGoal = false;
+let sewingGoalDone = false;
+let starsGoalDone = false;
+let albumGoalDone = false;
 
 //phone
 let phoneImgs = [];
@@ -472,7 +472,7 @@ function clickArea(mx, my, x, y, w, h) {
     if (clickArea(mx, my, 100, 260, 130, 200)) {
       currentPage = "album";
       currentPhoto = 0;
-      albumGoal = true;
+      albumGoalDone = true;
     }
   }
 
@@ -509,14 +509,17 @@ function clickArea(mx, my, x, y, w, h) {
   }
 
   function updateProgress() {
-    sewingGoal= sewing.stitches.length >= 15;
-    starsGoal= starCount >= 5;
-  
+    if (sewing.stitches.length >= 15) {
+      sewingGoalDone = true;
+    }
+    if (starCount >= 5) {
+      starsGoalDone = true;
+    }
     progressLevel = 0;
-  
-    if (sewingGoal) progressLevel++;
-    if (starsGoal) progressLevel++;
-    if (albumGoal) progressLevel++;
+
+    if (sewingGoalDone) progressLevel++;
+    if (starsGoalDone) progressLevel++;
+    if (albumGoalDone) progressLevel++;
 
     //phone lights up 
     if (progressLevel > recentProgress) {
